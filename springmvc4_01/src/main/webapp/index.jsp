@@ -96,6 +96,9 @@
 <a href="springmvc/testPathVariable/1">Test PathVariable</a>
 <br><br>
 
+<a href="springmvc/testAntPath2/tao/zhang/abc">Test AntPath2</a>
+<br><br>
+
 <a href="springmvc/testAntPath/mnxyz/abc">Test AntPath</a>
 <br><br>
 

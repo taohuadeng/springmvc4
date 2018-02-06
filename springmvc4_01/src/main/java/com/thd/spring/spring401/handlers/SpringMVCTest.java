@@ -32,7 +32,8 @@ public class SpringMVCTest {
     @RequestMapping("/testRedirect")
     public String testRedirect() {
         System.out.println("testRedirect");
-        return "redirect:/index.jsp";
+        //return "redirect:/index.jsp";
+        return "redirect:/springmvc/testView";
     }
 
     @RequestMapping("/testView")
@@ -225,10 +226,16 @@ public class SpringMVCTest {
     }
 
     /**
-     * Rest 风格的 URL. 以 CRUD 为例: 新增: /order POST 修改: /order/1 PUT update?id=1 获取:
-     * /order/1 GET get?id=1 删除: /order/1 DELETE delete?id=1
+     * Rest 风格的 URL.
+     * 以 CRUD 为例:
+     * 新增: /order POST
+     * 修改: /order/1 PUT update?id=1
+     * 获取: /order/1 GET get?id=1
+     * 删除: /order/1 DELETE delete?id=1
      * <p/>
-     * 如何发送 PUT 请求和 DELETE 请求呢 ? 1. 需要配置 HiddenHttpMethodFilter 2. 需要发送 POST 请求
+     * 如何发送 PUT 请求和 DELETE 请求呢 ?
+     * 1. 需要配置 HiddenHttpMethodFilter
+     * 2. 需要发送 POST 请求
      * 3. 需要在发送 POST 请求时携带一个 name="_method" 的隐藏域, 值为 DELETE 或 PUT
      * <p/>
      * 在 SpringMVC 的目标方法中如何得到 id 呢? 使用 @PathVariable 注解
@@ -268,6 +275,12 @@ public class SpringMVCTest {
         return SUCCESS;
     }
 
+    @RequestMapping("/testAntPath2/**/abc")
+    public String testAntPath2() {
+        System.out.println("testAntPath");
+        return SUCCESS;
+    }
+
     @RequestMapping("/testAntPath/*/abc")
     public String testAntPath() {
         System.out.println("testAntPath");
@@ -275,9 +288,9 @@ public class SpringMVCTest {
     }
 
     /**
-     * 了解: 可以使用 params 和 headers 来更加精确的映射请求. params 和 headers 支持简单的表达式.
-     *
-     * @return
+     * 了解:
+     * 可以使用 params 和 headers 来更加精确的映射请求.
+     * params 和 headers 支持简单的表达式.
      */
     @RequestMapping(value = "testParamsAndHeaders", params = {"username",
             "age!=10"}, headers = {"Accept-Language=en-US,zh;q=0.8"})
@@ -296,9 +309,11 @@ public class SpringMVCTest {
     }
 
     /**
-     * 1. @RequestMapping 除了修饰方法, 还可来修饰类 2. 1). 类定义处: 提供初步的请求映射信息。相对于 WEB 应用的根目录
-     * 2). 方法处: 提供进一步的细分映射信息。 相对于类定义处的 URL。若类定义处未标注 @RequestMapping，则方法处标记的 URL
-     * 相对于 WEB 应用的根目录
+     * 1. @RequestMapping 除了修饰方法, 还可来修饰类
+     * 2.
+     * 1). 类定义处: 提供初步的请求映射信息。相对于 WEB 应用的根目录
+     * 2). 方法处: 提供进一步的细分映射信息。 相对于类定义处的 URL。
+     * 若类定义处未标注 @RequestMapping，则方法处标记的 URL 相对于 WEB 应用的根目录
      */
     @RequestMapping("/testRequestMapping")
     public String testRequestMapping() {
